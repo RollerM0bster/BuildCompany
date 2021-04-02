@@ -18,7 +18,14 @@ export class MaterialListComponent implements OnInit {
       "measure":"шт.",
       "unitPrice":300,
       "quantity":20
-    }]
+    },
+  {"id":2,
+"name":"Обои компакт-винил на флизелиновой основе Elysium Шато Е34905 (1,06х10 м)",
+"measure":"шт.",
+"unitPrice":500,
+"quantity":10
+}
+]
   
   }
 

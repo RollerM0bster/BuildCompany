@@ -11,6 +11,8 @@ import { RegisterComponent } from './register/register.component';
 import { OrdersComponent } from './orders/orders.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CreateOrderComponent } from './create-order/create-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,9 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
     RegisterComponent,
     OrdersComponent,
     LogoutComponent,
-    SuppliersComponent
+    SuppliersComponent,
+    NavbarComponent,
+    CreateOrderComponent
     
   ],
   imports: [
