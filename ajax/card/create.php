@@ -1,5 +1,5 @@
 <?php
-require "../../admin/dbconn.php";
+require "../admin/init.php";
 // Выполнение SQL-запроса
 $mat=$_POST['material_id'];
 $state=$_POST['state_id'];
@@ -20,5 +20,5 @@ pg_free_result($result);
 // Закрытие соединения
 pg_close($dbconn);
 
-echo(json_encode($res));
+echo(json_encode($res),JSON_UNESCAPED_UNICODE);
 ?>

@@ -1,5 +1,5 @@
 <?php
-require "../../admin/dbconn.php";
+require "../admin/init.php";
 
 function generateCode($length = 6)
 {
@@ -45,5 +45,5 @@ pg_free_result($result);
 // Закрытие соединения
 pg_close($dbconn);
 
-echo(json_encode($res));
+echo(json_encode($res),JSON_UNESCAPED_UNICODE);
 ?>

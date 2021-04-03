@@ -1,5 +1,5 @@
 <?php
-require "../../admin/dbconn.php";
+require "../admin/init.php";
 
 
 if (isset($_POST['submit'])) {
