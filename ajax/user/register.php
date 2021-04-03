@@ -24,9 +24,10 @@ if (isset($_POST['submit'])) {
 
     if (count($err) == 0) {
         $login = $_POST['login'];
+        $role = $_POST['role'];
         # Убераем лишние пробелы и делаем двойное шифрование
         $password = md5(md5(trim($_POST['password'])));
-        $query = "insert into users (login,password) values ('{$login}','{$password}')";
+        $query = "insert into users (login,password,role) values ('{$login}','{$password}','{$role}')";
         $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
         $res=array('status'=>"success");
     } else {
