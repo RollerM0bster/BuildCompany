@@ -1,5 +1,11 @@
 <?php
 require "../admin/init.php";
+
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+foreach ($request as $key => $value)
+    $_POST[$key]=$value;
+
 // Выполнение SQL-запроса
 $mat=$_POST['material_id'];
 $state=$_POST['state_id'];

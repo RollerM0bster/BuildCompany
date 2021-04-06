@@ -1,5 +1,5 @@
 <?php
-require "../admin/init.php";
+require "../../admin/init.php";
 
 function generateCode($length = 6)
 {
@@ -11,7 +11,10 @@ function generateCode($length = 6)
     }
     return $code;
 }
-
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+foreach ($request as $key => $value)
+    $_POST[$key]=$value;
 // Выполнение SQL-запроса
 $login = $_POST['login'];
 $pass = $_POST['pass'];

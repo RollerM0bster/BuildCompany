@@ -1,7 +1,13 @@
 <?php
-require "../admin/init.php";
+require "../../admin/init.php";
 
-
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+foreach ($request as $key => $value)
+    $_POST[$key]=$value;
+//$res = array('post' => $_POST, 'get' => $_GET, 'req' => $_REQUEST, 'hren' => $postdata);
+//echo(json_encode($res, JSON_UNESCAPED_UNICODE));
+//return;
 if (isset($_POST['submit'])) {
     $err = array();
     # проверям логин
@@ -13,14 +19,12 @@ if (isset($_POST['submit'])) {
     }
     # проверяем, не сущестует ли пользователя с таким именем
 
-    $query = "SELECT COUNT(user_id) FROM users WHERE user_login='" . mysqli_real_escape_string($connection, $_POST['login']) . "'";
+    $query = "SELECT COUNT(id) FROM users WHERE login='" . mysqli_real_escape_string($connection, $_POST['login']) . "'";
     $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
     if ($result['COUNT(user_id)'] > 0) {
         $err[] = "Пользователь с таким логином уже существует в базе данных";
     }
 
-
-    # Если нет ошибок, то добавляем в БД нового пользователя
 
     if (count($err) == 0) {
         $login = $_POST['login'];
@@ -29,18 +33,22 @@ if (isset($_POST['submit'])) {
         $password = md5(md5(trim($_POST['password'])));
         $query = "insert into users (login,password,role) values ('{$login}','{$password}','{$role}')";
         $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
-        $res=array('status'=>"success");
+        $res = array('status' => "success");
     } else {
-        $res=array('status'=>"fail",'errors'=>$err);
+        $res = array('status' => "fail", 'errors' => $err);
     }
 
-}
 
 // Очистка результата
-pg_free_result($result);
+    pg_free_result($result);
 
 // Закрытие соединения
-pg_close($dbconn);
+    pg_close($dbconn);
 
-echo(json_encode($res));
-?>
+    echo(json_encode($res, JSON_UNESCAPED_UNICODE));
+}
+else{
+    $res = array('status' => "fail", 'errors' => 'not submit');
+    echo(json_encode($res, JSON_UNESCAPED_UNICODE));
+}
+
