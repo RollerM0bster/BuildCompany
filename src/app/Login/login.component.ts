@@ -1,7 +1,12 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import {FormsModule} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { AuthService } from '../../helpers/auth.service';
+import { first } from 'rxjs/operators';
+import { User } from '../../model/user';
+import { MaterialService } from '../Materials/material.service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,21 +14,32 @@ import {FormsModule} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  login:string;
-  password:string;
-  constructor(private router: Router) { }
+  user: User = new User();
+  constructor(private cookie: CookieService, private route: ActivatedRoute, private router: Router, private log: AuthService, private mat: MaterialService) {}
+
 
   ngOnInit(): void {
-      
   }
 
-  LoginUser(){
-    if(this.login=="login" && this.password=="pass"){
-     this.router.navigate(['/materials']);
-    }
+  LoginUser() {
+    console.log(this.user);
+    this.log.userLogin(this.user)
+      .pipe(first())
+      .subscribe(data => {
+        console.log(data);
+        const redirect = this.log.redirectUrl ? this.log.redirectUrl : '/materials';
+        this.router.navigate([redirect]);
+      },
+        error => { console.log(error); }
+      );
+
   }
 
-  RegisterUser(){
+  onSubmit() {
+    this.LoginUser();
+    this.log.loggedIn = true;
+  }
+  RegisterUser() {
     this.router.navigate(['/register']);
   }
 }

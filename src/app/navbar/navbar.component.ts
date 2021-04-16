@@ -1,5 +1,9 @@
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from 'src/Model/user';
+import { AuthService } from '../../helpers/auth.service';
 import { NavbarService } from './navbar.service';
 
 @Component({
@@ -10,9 +14,14 @@ import { NavbarService } from './navbar.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public nav:NavbarService) { }
+  isLoggedIn$:boolean;
+  constructor(private log:AuthService,private router:Router) {
+  }
 
   ngOnInit(): void {
   }
 
+  logout(){
+    this.log.userLogOut();
+  }
 }

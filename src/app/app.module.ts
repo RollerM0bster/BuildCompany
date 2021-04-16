@@ -5,14 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialListComponent } from './Materials/material-list/material-list.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule} from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { OrdersComponent } from './orders/orders.component';
-import { LogoutComponent } from './logout/logout.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
+import {HttpClientModule} from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
+import { AppGuard } from 'src/helpers/app-guard';
+import { AuthService } from '../helpers/auth.service';
+import { AuthGuard } from 'src/helpers/auth-guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +24,6 @@ import { CreateOrderComponent } from './create-order/create-order.component';
     LoginComponent,
     RegisterComponent,
     OrdersComponent,
-    LogoutComponent,
     SuppliersComponent,
     NavbarComponent,
     CreateOrderComponent
@@ -30,9 +33,12 @@ import { CreateOrderComponent } from './create-order/create-order.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
+    ReactiveFormsModule
+  
   ],
-  providers: [],
+  providers: [CookieService,AppGuard,AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
