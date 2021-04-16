@@ -8,6 +8,8 @@ if(isset($_COOKIE['id']) && isset($_COOKIE['hash'])) {
     $query = "SELECT * FROM user_auth where id ='{$id}' and auth_hash='{$hash}'";
     $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
     if ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+        setcookie("id", null, -1, '/');
+        setcookie("hash", null, -1, '/');
         $query = "DELETE FROM user_auth where id ='{$id}' and auth_hash='{$hash}'";
         $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
         $res = array('status' => "success");
