@@ -1,5 +1,11 @@
 <?php
-require "../../admin/dbconn.php";
+require "../admin/init.php";
+
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+foreach ($request as $key => $value)
+    $_POST[$key]=$value;
+
 // Выполнение SQL-запроса
 $mat=$_POST['material_id'];
 $state=$_POST['state_id'];
@@ -20,5 +26,5 @@ pg_free_result($result);
 // Закрытие соединения
 pg_close($dbconn);
 
-echo(json_encode($res));
+echo(json_encode($res),JSON_UNESCAPED_UNICODE);
 ?>
