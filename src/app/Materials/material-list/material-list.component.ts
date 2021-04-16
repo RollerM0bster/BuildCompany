@@ -1,32 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Material } from '../material';
-
+import { User } from 'src/model/user';
+import { Material } from '../../../model/material';
+import {MaterialService} from '../material.service';
+import {AuthService} from '../../../helpers/auth.service';
 @Component({
   selector: 'app-material-list',
-  templateUrl: './material-list.component.html',
+  templateUrl:'./material-list.component.html',
   styleUrls: ['./material-list.component.css']
 })
 export class MaterialListComponent implements OnInit {
 
   materials: Material[];
-  constructor() { }
+  error='';
+  success='';
+  constructor(private materialService:MaterialService,private log:AuthService) { }
 
   ngOnInit(): void {
-    this.materials=[{
-      "id":1,
-      "name":"Какой-то материал",
-      "measure":"шт.",
-      "unitPrice":300,
-      "quantity":20
-    },
-  {"id":2,
-"name":"Обои компакт-винил на флизелиновой основе Elysium Шато Е34905 (1,06х10 м)",
-"measure":"шт.",
-"unitPrice":500,
-"quantity":10
-}
-]
-  
+    this.getMaterials();
+    
   }
 
+  getMaterials():void{
+    this.materialService.getAllMaterials().subscribe(
+      (res:Material[])=>{
+        this.materials=res;
+      },
+      (err)=>{this.error=err;}
+    )
+  }
 }

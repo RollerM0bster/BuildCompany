@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row main-content bg-success text-center">
         <div class="col-md-4 text-center company-info">
@@ -9,21 +10,22 @@
                         <h2>Вход</h2>
                     </div>
                     <div class="row d-flex justify-content-center">
-                        <form control="" class="form-group">
-                            <div class="row">
-                                <input type="text" name="login" [(ngModel)]="login" class="form-input" placeholder="Логин">
-                            </div>
-                            <div class="row">
-                                <input type="text" name="password" [(ngModel)]="password" class="form-input" placeholder="Пароль">
-                            </div>
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-sm">
-                                    <input type="submit" value="Войти" class="btn" (click)="LoginUser()">
+                        <form  (ngSubmit)="onSubmit()">
+                                <div class="row">
+                                    <input type="text" name="login"  class="form-input"  placeholder="Логин" id="login" [(ngModel)]="user.login">
                                 </div>
-                                <div class="col-sm">
-                                    <input type="submit" value="Зарегистрироваться" class="btn" (click)="RegisterUser()">
+                                <div class="row">
+                                    <input type="text" name="password"  class="form-input" placeholder="Пароль" id="password" [(ngModel)]="user.password">
                                 </div>
-                            </div>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-sm">
+                                        <button type="submit" class="btn">Войти</button>
+                                    </div>
+                                    <div class="col-sm">
+                                        <button type="button" class="btn" (click)="RegisterUser()">Зарегистрироваться</button>
+                                    </div>
+                                </div>
+                           
                         </form>
                     </div>
             </div>

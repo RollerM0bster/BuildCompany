@@ -28,7 +28,7 @@
 	}
 }
 @media screen and (min-width: 642px) and (max-width:800px){
-	.main-content{width: 70%;}
+	.main-content{width: 90%;}
 }
 .row > h2{
 	color:#316caf;
@@ -73,8 +73,4 @@ form{
 .btn:hover, .btn:focus{
 	background-color: #316caf;
 	color:#fff;
-}
-
-.bg{
-    background-image: url(src/img/bg.jpg);
 }
