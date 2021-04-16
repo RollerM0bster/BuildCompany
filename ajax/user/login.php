@@ -17,7 +17,7 @@ foreach ($request as $key => $value)
     $_POST[$key]=$value;
 // Выполнение SQL-запроса
 $login = $_POST['login'];
-$pass = $_POST['pass'];
+$pass = $_POST['password'];
 $query = "SELECT * FROM users where login='".mysqli_real_escape_string($dbconn,$login)."'";
 $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
 $res=array();
@@ -48,5 +48,5 @@ pg_free_result($result);
 // Закрытие соединения
 pg_close($dbconn);
 
-echo(json_encode($res),JSON_UNESCAPED_UNICODE);
+echo(json_encode($res,JSON_UNESCAPED_UNICODE));
 ?>
