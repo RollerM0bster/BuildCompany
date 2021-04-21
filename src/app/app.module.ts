@@ -17,6 +17,7 @@ import {CookieService} from 'ngx-cookie-service';
 import { AppGuard } from 'src/helpers/app-guard';
 import { AuthService } from '../helpers/auth.service';
 import { AuthGuard } from 'src/helpers/auth-guard';
+import { CreateStateComponent } from './create-state/create-state.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { AuthGuard } from 'src/helpers/auth-guard';
     OrdersComponent,
     SuppliersComponent,
     NavbarComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    CreateStateComponent
     
   ],
   imports: [

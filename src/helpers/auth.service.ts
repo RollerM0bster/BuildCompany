@@ -6,7 +6,6 @@ import { User } from '../model/user';
 import { catchError, map } from 'rxjs/operators';
 import { BehaviorSubject, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { SessionAuthStrategy } from './session-auth-strategy';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +15,12 @@ export class AuthService {
   redirectUrl: string;
   loggedIn = false;
 
-  constructor(private http: HttpClient, private router: Router,private auth:SessionAuthStrategy) {
+  constructor(private http: HttpClient, private router: Router) {
 
   }
 
   public userLogin(user: User) {
-    return this.http.post<any>(this.baseUrl + '/cookie/test.php', user,{withCredentials:true})
+    return this.http.post<any>(this.baseUrl + '/user/login.php', user,{withCredentials:true})
       .pipe(map(user => {
         return user;
       }))
@@ -34,7 +33,6 @@ export class AuthService {
    }
 
   userLogOut() {
-    this.auth.doLogoutUser();
     this.loggedIn = false;
     this.router.navigate(['/login']);
   }
