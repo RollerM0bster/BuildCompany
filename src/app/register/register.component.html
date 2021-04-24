@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row main-content bg-success text-center">
+        <div class="col-md-4 text-center company-info">
+            <h4 class="company-title">СТРОЙ</h4>
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-12 login-form">
+            <div class="container-fluid">
+                    <div class="row d-flex justify-content-center">
+                        <h2>Регистрация</h2>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <form  (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <div class="row">
+                                    <input type="text" name="login"   class="form-control" class="form-input" placeholder="Логин" [(ngModel)]="user.login" #login="ngModel">
+                                <div [hidden]="login.valid || login.untouched" class="alert alert-danger">Укажите логин</div>
+                                </div>
+                                <div class="row">
+                                    <input type="text" name="password"   class="form-control" class="form-input" placeholder="Пароль" [(ngModel)]="user.password">
+                                </div>
+                                <div class="row">
+                                    <div class="w-50 d-inline-block">
+                                        <input type="radio" name="role"  value="director" class="form-control" class="w-20" (change)="radioChangeHandler($event)" [(ngModel)]="user.role"> Директор
+                                    </div>
+                                    <div class="w-50 d-inline-block">
+                                        <input type="radio" name="role"  value="storekeeper" class="form-control" class="w-20" (change)="radioChangeHandler($event)" [(ngModel)]="user.role" > Кладовщик
+                                    </div>
+                                 </div>
+                                <div class="row d-flex justify-content-center">
+                                        <button  class="btn" type="submit">Зарегистрироваться</button>
+                                </div>
+                            </div>
+                        </form>
+                   </div>
+            </div>
+        </div>
+    </div>
+</div>

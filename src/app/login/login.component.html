@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row main-content bg-success text-center">
+        <div class="col-md-4 text-center company-info">
+            <h4 class="company-title">СТРОЙ</h4>
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-12 login-form">
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <h2>Вход</h2>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <form (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <input type="text" name="login" class="form-input" placeholder="Логин" id="login"
+                                [(ngModel)]="user.login">
+                        </div>
+                        <div class="row">
+                            <input type="text" name="password" class="form-input" placeholder="Пароль" id="password"
+                                [(ngModel)]="user.password">
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-sm">
+                                <button type="submit" class="btn">Войти</button>
+                            </div>
+                            <div class="col-sm">
+                                <button type="button" class="btn" (click)="RegisterUser()">Зарегистрироваться</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

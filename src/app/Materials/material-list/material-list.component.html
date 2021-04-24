@@ -1,0 +1,30 @@
+<div class="container ">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card-body">
+                    <table class="table table-bordered table-striped" style="width:100%"> 
+                        <thead>
+                            <tr>
+                                <th class="text-center">№</th>
+                                <th class="text-center">Наименование</th>
+                                <th class="text-center">Единица измерения</th>
+                                <th class="text-center">Цена за единицу, руб.</th>
+                                <th class="text-center">Количество</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let material of materials">
+                                <td>{{material.id}}</td>
+                                <td>{{material.name}}</td>
+                                <td>{{material.measure}}</td>
+                                <td>{{material.unitPrice}}</td>
+                                <td>{{material.quantity}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
