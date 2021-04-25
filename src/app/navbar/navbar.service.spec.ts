@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MaterialService } from './material.service';
+import { NavbarService } from './navbar.service';
 
-describe('MaterialService', () => {
-  let service: MaterialService;
+describe('NavbarService', () => {
+  let service: NavbarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MaterialService);
+    service = TestBed.inject(NavbarService);
   });
 
   it('should be created', () => {
