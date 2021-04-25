@@ -30,10 +30,8 @@ export class AuthService {
   }
 
  public userLogOut() {
-   this.http.post(`${this.baseUrl}/user/logout.php`,{},{withCredentials:true}).subscribe(data=>{
-     console.log(data);
-   });
-    this.router.navigate(['/login']);
+   return this.http.post(`${this.baseUrl}/user/logout.php`,{},{withCredentials:true});
+    
   }
 
   public isLoggedIn():any{
