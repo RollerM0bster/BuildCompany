@@ -8,7 +8,7 @@ foreach ($request as $key => $value)
 //$res = array('post' => $_POST, 'get' => $_GET, 'req' => $_REQUEST, 'hren' => $postdata);
 //echo(json_encode($res, JSON_UNESCAPED_UNICODE));
 //return;
-if (isset($_POST['submit'])) {
+if (true || isset($_POST['submit'])) {
     $err = array();
     # проверям логин
     if (!preg_match("/^[a-zA-Z0-9]+$/", $_POST['login'])) {
@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
     }
     # проверяем, не сущестует ли пользователя с таким именем
 
-    $query = "SELECT COUNT(id) FROM users WHERE login='" . mysqli_real_escape_string($connection, $_POST['login']) . "'";
+    $query = "SELECT COUNT(id) FROM users WHERE login='" . pg_escape_string($dbconn, $_POST['login']) . "'";
     $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
     if ($result['COUNT(user_id)'] > 0) {
         $err[] = "Пользователь с таким логином уже существует в базе данных";

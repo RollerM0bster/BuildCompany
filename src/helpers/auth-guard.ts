@@ -1,29 +1,30 @@
 import { Injectable } from "@angular/core";
 import { CanActivate, Router } from "@angular/router";
 import { AuthService } from "./auth.service";
-import {User} from '../model/user';
 import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
+import { AuthData } from "src/model/auth-data";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthGuard implements CanActivate {
-  result={"status":"success"};
   constructor(private auth: AuthService, private router: Router) { }
-  canActivate():Observable< boolean> {
+  canActivate(): Observable<boolean> {
     return this.auth.isLoggedIn().pipe(
-      map(log=>{
-      if(JSON.stringify(log)==JSON.stringify(this.result)){
-        this.auth.loggedIn.next(true);
-        this.router.navigate(['/materials']);
-        return false;
-      }
-        else{
+      map((log: AuthData) => {
+        this.auth.data = log;
+        if (this.auth.data.status == 'success') {
+          if (this.auth.data.role == 'director') this.auth.isDir.next(true);
+          else this.auth.isStore.next(true);
+          this.router.navigate(['/materials']);
+          return false;
+        }
+        else {
           return true;
         }
       }
-    ));
+      ));
   }
 }

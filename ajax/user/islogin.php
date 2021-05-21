@@ -8,7 +8,11 @@ if(isset($_COOKIE['id']) && isset($_COOKIE['hash'])) {
     $query = "SELECT * FROM user_auth where id ='{$id}' and auth_hash='{$hash}'";
     $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
     if ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-        $res = array('status' => "success");
+        $query = "SELECT role FROM users where id ='{$id}'";
+        $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
+        if ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+            $res = array('status' => "success","role"=>$line['role']);
+        }
     }
     else{
         $res=array('status'=>"error",'error'=>'wrong data');

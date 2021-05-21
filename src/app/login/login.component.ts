@@ -1,11 +1,12 @@
-import { ThisReceiver } from '@angular/compiler';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { AuthService } from '../../helpers/auth.service';
 import { first } from 'rxjs/operators';
 import { User } from '../../model/user';
-import { MaterialService } from '../Materials/material.service';
+import { MaterialService } from '../materials/material.service';
+import { getUrlScheme } from '@angular/compiler';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +15,7 @@ import { MaterialService } from '../Materials/material.service';
 export class LoginComponent implements OnInit {
 
   user: User = new User();
-  constructor(private route: ActivatedRoute, private router: Router, private log: AuthService, private mat: MaterialService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private log: AuthService, private mat: MaterialService) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   LoginUser() {
     this.log.userLogin(this.user)
       .pipe(first())
-      .subscribe(data => {
+      .subscribe((data) => {
         const redirect = this.log.redirectUrl ? this.log.redirectUrl : '/materials';
         this.router.navigate([redirect]);
       },
@@ -37,4 +38,10 @@ export class LoginComponent implements OnInit {
   RegisterUser() {
     this.router.navigate(['/register']);
   }
+
+  getUrl(){
+    return "url(https://www.pexels.com/photo/nothin-to-see-here-neon-sign-3342739/)";
+  }
+  
 }
+
