@@ -6,16 +6,20 @@ import { User } from '../model/user';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthData } from 'src/model/auth-data';
 @Injectable(
   {
-    providedIn:'root'
+    providedIn: 'root'
   }
 )
 export class AuthService {
   baseUrl = environment.baseUrl;
   redirectUrl: string;
-  data:any;
-  loggedIn:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
+  loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isDir: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isStore: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  data: AuthData;
 
   constructor(private http: HttpClient, private router: Router) {
 
@@ -29,13 +33,13 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/user/register.php`, user);
   }
 
- public userLogOut() {
-   return this.http.post(`${this.baseUrl}/user/logout.php`,{},{withCredentials:true});
-    
+  public userLogOut() {
+    return this.http.post(`${this.baseUrl}/user/logout.php`, {}, { withCredentials: true });
+
   }
 
-  public isLoggedIn():any{
+  public isLoggedIn(): any {
     return this.http.post(`${this.baseUrl}/user/islogin.php`, {}, { withCredentials: true });
-}
+  }
 
 }

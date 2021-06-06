@@ -4,5 +4,4 @@ export class User {
     password:string;
     role:string;
     submit:string;
-    token:string;
 }

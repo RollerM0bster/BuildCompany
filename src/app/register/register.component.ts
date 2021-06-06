@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
     this.goToLogin();
   }
   SignUpUser() {
+    console.log(this.user);
     this.auth.SignUp(this.user)
       .subscribe(data => {
 

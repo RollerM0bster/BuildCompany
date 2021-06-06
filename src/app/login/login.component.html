@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="row main-content bg-success text-center">
+<div class="full-size">
+    <div class="row main-content text-center">
         <div class="col-md-4 text-center company-info">
             <h4 class="company-title">СТРОЙ</h4>
         </div>
@@ -9,18 +9,20 @@
                     <h2>Вход</h2>
                 </div>
                 <div class="row d-flex justify-content-center">
-                    <form (ngSubmit)="onSubmit()">
+                    <form (ngSubmit)="onSubmit()" autocomplete="off">
                         <div class="row">
-                            <input type="text" name="login" class="form-input" placeholder="Логин" id="login"
-                                [(ngModel)]="user.login">
+                            <input type="text" name="login" class="form-input" placeholder="Логин" 
+                                [(ngModel)]="user.login" #login="ngModel" required/>
+                                <div [hidden]="login.valid || login.untouched" class="alert alert-danger">Введите логин</div>
                         </div>
                         <div class="row">
-                            <input type="text" name="password" class="form-input" placeholder="Пароль" id="password"
-                                [(ngModel)]="user.password">
+                            <input type="text" name="password" class="form-input" placeholder="Пароль"
+                                [(ngModel)]="user.password" #password="ngModel" required/>  
+                                <div [hidden]="password.valid || password.untouched" class="alert alert-danger">Введите пароль</div>
                         </div>
                         <div class="row d-flex justify-content-center">
                             <div class="col-sm">
-                                <button type="submit" class="btn">Войти</button>
+                                <button [disabled]="login.invalid || password.invalid" type="submit" class="btn">Войти</button>
                             </div>
                             <div class="col-sm">
                                 <button type="button" class="btn" (click)="RegisterUser()">Зарегистрироваться</button>

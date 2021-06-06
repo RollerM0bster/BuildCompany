@@ -1,16 +1,35 @@
-.back{
-    background-color: rgb(189, 90, 33);
+.button-props{
+    background-color: rgb(23, 151, 81);
 }
 .border-color{
-    border-color:rgb(189, 90, 33) ;
+    border-color:rgb(23, 151, 81) ;
 }
 
 .card-margin{
     margin:auto;
     margin-top:100px;
+    padding:0;
 }
 
 .card-header-params{
-    background-color: rgb(189, 90, 33);
-    
+    background-color: rgb(23,151, 81);
+    padding:20px  !important;
+    border-bottom: 3px solid #BBB;
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    overflow:hidden;
+    font-family: 'Roboto',sans-serif;
+    -webkit-transition: box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+    transition:box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+select.ng-touched.ng-invalid{
+    border-color:rgb(238, 72, 72);
+}
+
+input.ng-touched.ng-invalid{
+    border-color:rgb(238, 72, 72);
+}
+
+div.invalidField{
+    color:rgb(238, 72, 72);
 }

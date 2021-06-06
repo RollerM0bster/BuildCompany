@@ -1,5 +1,5 @@
 <?php
-require "../admin/init.php";
+require "../../admin/init.php";
 
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);

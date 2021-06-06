@@ -1,44 +1,55 @@
 <div class="card border-color col-md-6 offset-3 card-margin">
-    <div class="card-header card-header-params back text-white">Карточка</div>
+    <div class="card-header card-header-params text-white">STROI</div>
     <div class="card-body">
-        <form>
+        <form [formGroup]="cardForm" (submit)="onSubmit()">
             <div class="row">
                 <div class="form-group col-md-8">
                     <label>Материал</label>
-                    <select class="form-control" id="material">
-                            <option>...</option>
+                    <select class="form-control" formControlName="material_id">
+                        <option *ngFor="let material of materials" [ngValue]="material.id">
+                            {{material.name}}
+                            {{material.measure}}
+                            {{material.unitPrice}}
+                            {{material.quantity}}
+                        </option>
                     </select>
+                    <div class="invalidField" *ngIf="isFieldInvalid('material_id')">Обязательное поле</div>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-4">
                     <label>Количество</label>
-                    <input type="text" class="form-control">
+                     <input type="number" class="form-control w-25" formControlName="count">
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-8">
                     <label>Состояние</label>
-                    <select class="form-control" id="state">
-                            <option>...</option>
+                    <select class="form-control" formControlName="state_id">
+                        <option *ngFor="let state of states" [ngValue]="state.id">{{state.name}}</option>
                     </select>
+                    <div class="invalidField" *ngIf="isFieldInvalid('state_id')">Обязательное поле</div>
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-8">
                     <label>Операция</label>
-                    <select class="form-control" id="operation">
-                            <option>...</option>
+                    <select class="form-control" formControlName="operation_id">
+                        <option *ngFor="let operation of operations" [ngValue]="operation.id">{{operation.name}}
+                        </option>
                     </select>
+                    <div class="invalidField" *ngIf="isFieldInvalid('operation_id')">Обязательное поле</div>
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-8">
                     <label>Поставщик</label>
-                    <input type="text" class="form-control">
+                    <select class="form-control" formControlName="provider">
+                        <option *ngFor="let provider of providers" [ngValue]="provider.id">
+                            {{provider.name}}{{provider.contact}}</option>
+                    </select>
+                    <div class="invalidField" *ngIf="isFieldInvalid('provider')">Обязательное поле</div>
                 </div>
             </div>
-            <button type="submit" class="btn back text-white">Добавить</button>
+            <button type="submit" [disabled]="CardInvalid()" class="btn button-props text-white">Добавить</button>
         </form>
     </div>
 </div>
-
-

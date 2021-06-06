@@ -1,17 +1,17 @@
 <nav class="navbar navbar-expand-sm navbar-bg navbar-dark" *ngIf="logged | async">
     <ul class="navbar-nav  mr-auto">
         <li class="nav-link"><a routerLink="materials" routerLinkActive="active" class="nav-link">Материалы</a></li>
-        <li class="nav-link"><a routerLink="orders" routerLinkActive="active" class="nav-link">Заявки</a></li>
-        <li class="nav-link"><a routerLink="suppliers" routerLinkActive="active" class="nav-link">Поставщики</a></li>
-        <li class="nav-link"><a routerLink="create_order" routerLinkActive="active" class="nav-link">Создать заявку</a>
+        <li class="nav-link"><a routerLink="orders" routerLinkActive="active" class="nav-link" *ngIf="isDirector|async">Заявки</a></li>
+        <li class="nav-link"><a routerLink="suppliers" routerLinkActive="active" class="nav-link" *ngIf="isDirector|async">Поставщики</a></li>
+        <li class="nav-link" *ngIf="isDirector|async"><a routerLink="create_order" routerLinkActive="active"
+                class="nav-link">Создать заявку</a>
         </li>
-        <li class="nav-link"><a routerLink="add_card" routerLinkActive="active" class="nav-link">Добавить карточку</a>
+        <li class="nav-link" *ngIf="isStorekeeper |async"><a routerLink="add_card" routerLinkActive="active"
+                class="nav-link">Добавить карточку</a>
         </li>
     </ul>
     <ul class="navbar-nav">
-        <li class="nav-link"><a routerLink="logout" routerLinkActive="active" class="nav-link" (click)="logout()" *ngIf="logged">Log out</a></li>
+        <li class="nav-link"><a routerLink="" routerLinkActive="active" class="nav-link" (click)="logout()"
+                *ngIf="logged">Выйти</a></li>
     </ul>
 </nav>
-
-
-<!--*ngIf="isLoggedIn$ | async"-->
