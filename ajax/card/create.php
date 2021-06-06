@@ -26,5 +26,5 @@ pg_free_result($result);
 // Закрытие соединения
 pg_close($dbconn);
 
-echo(json_encode($res),JSON_UNESCAPED_UNICODE);
+echo(json_encode($res,JSON_UNESCAPED_UNICODE));
 ?>
