@@ -20,4 +20,5 @@ pg_free_result($result);
 
 // Закрытие соединения
 pg_close($dbconn);
+
 ?>

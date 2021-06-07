@@ -8,7 +8,7 @@ $query = 'select
        mat.unit as measure,
        mat.price as unitPrice,
        stocks.quantity as quantity
-       from materials as mat join stocks on mat.id=stocks.material';
+       from materials as mat join stocks on mat.id=stocks.material order by id asc';
 $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
 $res=array();
 while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {

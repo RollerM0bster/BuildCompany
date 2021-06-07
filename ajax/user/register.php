@@ -8,6 +8,8 @@ foreach ($request as $key => $value)
 //$res = array('post' => $_POST, 'get' => $_GET, 'req' => $_REQUEST, 'hren' => $postdata);
 //echo(json_encode($res, JSON_UNESCAPED_UNICODE));
 //return;
+$_POST['login']=trim($_POST['login']);
+$_POST['password']=trim($_POST['password']);
 if (true || isset($_POST['submit'])) {
     $err = array();
     # проверям логин

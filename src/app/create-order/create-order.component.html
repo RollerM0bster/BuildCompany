@@ -1,7 +1,57 @@
-<div class="container">
-    <div class="row">ба</div>
-    <div class="row">ра</div>
-    <div class="row">еа</div>
-    <div class="row">ыу</div>
-    <div class="row">ы</div>
+<div class="mainForm container">
+    <form [formGroup]="orderForm">
+        <label>Покупатель: ООО "СТРОЙ"</label>
+        <div class="form-group col-md-4">
+            <label>Дата заявки</label>
+            <input type="text" class="form-control">
+        </div>
+        <label>Поставщик:</label>
+        <div class="form-group col-md-4">
+            <label>Название компании</label>
+            <input type="text" formControlName="provCompName" class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+            <label>Адрес</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+            <label>ФИО директора</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+            <label>E-mail</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+            <label>Телефон</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+            <label>Желаемая дата поставки</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="row">
+                   <div class="col"><label>Материалы</label></div>   
+                   <div class="col text-right"><button class="btn btn-primary">Добавить</button></div>
+                  
+        </div> 
+        <div class="row d-flex justify-content-center">
+            <div class="form-group col-md-4">
+                <label>Наименование</label>
+            <input type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-2">
+                <label>Единица измерения</label>
+            <input type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-2">
+                <label>Цена за единицу</label>
+            <input type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-2">
+                <label>Количество</label>
+            <input type="text" class="form-control">
+            </div>
+        </div>
+    </form>
 </div>

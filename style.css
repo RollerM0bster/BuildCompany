@@ -1,0 +1,136 @@
+body{
+    margin: 0;
+}
+
+header{
+    background-color: #343a40!important;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+header a{
+    color: rgba(255,255,255,.5);
+    text-decoration: unset;
+}
+header a.active{
+    color: rgba(255,255,255);
+    text-decoration: unset;
+}
+header a:hover{
+    color: rgba(255,255,255,.8);
+}
+header > div{
+    padding: 15px;
+    color: rgba(255,255,255,.5);
+}
+
+.container{
+}
+
+.create_container{
+    width: 60%;
+    margin: 20px auto;
+    border-radius: 10px;
+    border: solid 2px #343a40;
+}
+
+.create_container .head{
+    background-color: #42A948;
+    height: 40px;
+    color: white;
+    text-align: center;
+
+    padding-top: 15px;
+    border-radius: 8px 8px 0 0;
+}
+
+.provider_select{
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+.provider_select>div{
+    margin: 20px 20px;
+}
+
+.material_select{
+    min-height: 100px;
+}
+.materials_title{
+    text-align: center;
+}
+.mat_row{
+    display: flex;
+    justify-content: center;
+    margin: 5px 20px;
+}
+.mat_row .mat_name{
+    width: 20%;
+    text-align: right;
+    margin-right: 10px;
+}
+.mat_row .count_mat{
+    width: 60px;
+    margin: 0 10px;
+}
+.mat_row .remove{
+    text-decoration: none;
+    color: #343a40;
+    width: 100px;
+    margin: 0 20px;
+    background-color: peru;
+    border-radius: 10px;
+    text-align: center;
+}
+.material_new{
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+.material_new>div{
+    margin: 20px 20px;
+}
+.end{
+    text-align: center;
+    line-height: 30px;
+}
+
+.create_req, .close_req{
+    text-decoration: none;
+    width: 150px;
+    margin: 0 20px;
+    background-color: blue;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    padding: 5px 10px;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.card{
+    border: solid 2px black;
+    width: 20%;
+    margin: 5px 10px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.card > div{
+    min-height: 30px;
+    margin: 10px;
+}
+
+.card_date, .card_title, .card_mats, .card_sum{
+
+    border-bottom: solid 2px black;
+}
+
+.close{
+    margin-top: 10px;
+}

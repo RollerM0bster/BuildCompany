@@ -1,3 +1,9 @@
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success!</strong> Карточка добавлена!
+    <button type="button" (click)="closeAlert()"class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 <div class="card border-color col-md-6 offset-3 card-margin">
     <div class="card-header card-header-params text-white">STROI</div>
     <div class="card-body">

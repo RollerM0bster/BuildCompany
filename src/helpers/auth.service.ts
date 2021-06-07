@@ -19,13 +19,11 @@ export class AuthService {
   isDir: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isStore: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  data: AuthData;
-
   constructor(private http: HttpClient, private router: Router) {
 
   }
 
-  public userLogin(user: User) {
+  public userLogin(user: Object) {
     return this.http.post<any>(this.baseUrl + '/user/login.php', user, { withCredentials: true });
 
   }

@@ -2,8 +2,9 @@
 	width: 50%;
 	border-radius: 20px;
 	box-shadow: 0 5px 5px rgba(0,0,0,.4);
-	margin: 10em auto;
+	margin: 15em auto;
 	display: flex;
+	opacity: 0.9;
 }
 .company-info{
 	background-color: #316caf;
@@ -74,3 +75,14 @@ form{
 	background-color: #316caf;
 	color:#fff;
 }
+
+.full-size {
+	position: absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	background-image: url("/assets/images/bg8.jpg");
+	background-size: cover;
+	height: 100%;
+  }

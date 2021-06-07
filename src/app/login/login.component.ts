@@ -1,11 +1,10 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../helpers/auth.service';
-import { first } from 'rxjs/operators';
-import { User } from '../../model/user';
-import { MaterialService } from '../materials/material.service';
-import { getUrlScheme } from '@angular/compiler';
+import { first, map } from 'rxjs/operators';
+import {DataService} from '../../helpers/data.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthData } from 'src/model/auth-data';
 
 @Component({
   selector: 'app-login',
@@ -13,34 +12,38 @@ import { getUrlScheme } from '@angular/compiler';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  user: User = new User();
-  constructor(private route: ActivatedRoute, private router: Router, private log: AuthService, private mat: MaterialService) { }
+  userForm:FormGroup;
+  showErrorMessage=false;
+  constructor(private route: ActivatedRoute, private router: Router, private log: AuthService, private mat: DataService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
+    this.initForm();
   }
 
+
+  initForm(){
+      this.userForm= this.fb.group({
+        login:['',Validators.required],
+        password:['',Validators.required]
+      })
+  }
   LoginUser() {
-    this.log.userLogin(this.user)
-      .pipe(first())
-      .subscribe((data) => {
-        const redirect = this.log.redirectUrl ? this.log.redirectUrl : '/materials';
-        this.router.navigate([redirect]);
-      },
-        error => { console.log(error); }
-      );
-
+    console.log(this.userForm.value);
+    this.log.userLogin(this.userForm.value).subscribe(
+      (data:AuthData)=>{
+          if(data.status=='success')this.router.navigate(['/materials']);
+          else{this.showErrorMessage=true;}
+      });
   }
-
-  onSubmit() {
-    this.LoginUser();
+  InvalidUntouched(field:string):boolean{
+    const fieldName=this.userForm.controls[field];
+    return fieldName.invalid;
+  }
+  isUserFormInvalid():boolean{
+    return this.InvalidUntouched('login') || this.InvalidUntouched('password');
   }
   RegisterUser() {
     this.router.navigate(['/register']);
-  }
-
-  getUrl(){
-    return "url(https://www.pexels.com/photo/nothin-to-see-here-neon-sign-3342739/)";
   }
   
 }

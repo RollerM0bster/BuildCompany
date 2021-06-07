@@ -6,7 +6,7 @@ $query = 'select
        pr.id as id,
        pr.name as name,
        pr.mail as mail,
-       pr.contact as cotactFace,
+       pr.contact as contactFace,
        pr.tel as tel
        from providers as pr';
 $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());

@@ -5,6 +5,8 @@
 	margin: 15em auto;
 	display: flex;
 	height:40%;
+	opacity: 0.9;
+	
 }
 .company-info{
 	background-color: #316caf;
@@ -76,12 +78,12 @@ form{
 	color:#fff;
 }
 
-.ng-valid[required],.ng-valid.required {
-	border-left: 5px solid #42A948;
+input.ng-touched.ng-valid {
+	border-color: rgb(66, 169, 72);
 }
 
-.ng-invalid:not(form){
-	border-left: 5px solid #a94442;
+input.ng-touched.ng-invalid{
+	border-color: rgb(238, 72, 72);
 }
 
   .full-size {
@@ -90,7 +92,7 @@ form{
   left:0px;
   right:0px;
   bottom:0px;
-  background-image: url("/assets/images/bg4.png");
+  background-image: url("/assets/images/bg8.jpg");
   background-size: cover;
   height: 100%;
 }

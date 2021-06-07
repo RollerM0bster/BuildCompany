@@ -14,11 +14,16 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.auth.isLoggedIn().pipe(
       map((log: AuthData) => {
-        this.auth.data = log;
-        if (this.auth.data.status == 'success') {
-          if (this.auth.data.role == 'director') this.auth.isDir.next(true);
+        console.log(log);
+        if (log.status == 'success') {
+          if (log.role == 'director') {
+            this.auth.isDir.next(true);
+            this.router.navigate(["http://82.146.52.18:8050"]);
+          }
           else this.auth.isStore.next(true);
+          {
           this.router.navigate(['/materials']);
+          }
           return false;
         }
         else {

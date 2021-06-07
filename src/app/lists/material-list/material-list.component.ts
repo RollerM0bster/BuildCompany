@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Material } from '../../../model/material';
-import { MaterialService } from '../material.service';
+import {DataService} from '../../../helpers/data.service';
 import { AuthService } from '../../../helpers/auth.service';
 @Component({
   selector: 'app-material-list',
@@ -12,7 +12,7 @@ export class MaterialListComponent implements OnInit {
   materials: Material[];
   error = '';
   success = '';
-  constructor(private materialService: MaterialService, private log: AuthService) { }
+  constructor(private ds: DataService, private log: AuthService) { }
 
   ngOnInit(): void {
     this.getMaterials();
@@ -20,7 +20,7 @@ export class MaterialListComponent implements OnInit {
   }
 
   getMaterials(): void {
-    this.materialService.getAllMaterials().subscribe(
+    this.ds.getMaterials().subscribe(
       (res: Material[]) => {
         this.materials = res;
       },

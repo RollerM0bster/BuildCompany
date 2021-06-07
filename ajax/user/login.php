@@ -16,8 +16,8 @@ $request = json_decode($postdata);
 foreach ($request as $key => $value)
     $_POST[$key]=$value;
 // Выполнение SQL-запроса
-$login = $_POST['login'];
-$pass = $_POST['password'];
+$login = trim($_POST['login']);
+$pass = trim($_POST['password']);
 $query = "SELECT * FROM users where login='".pg_escape_string($dbconn,$login)."'";
 $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
 $res=array();

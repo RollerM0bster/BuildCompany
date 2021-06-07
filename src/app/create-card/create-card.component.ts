@@ -1,18 +1,19 @@
 import { Component, OnInit, Provider } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CardService } from 'src/helpers/card.service';
+import { DataService } from 'src/helpers/data.service';
 import { Material } from 'src/model/material';
 import { Operation } from 'src/model/operation';
 import { State } from 'src/model/state';
-import { MaterialService } from '../materials/material.service';
+
 
 @Component({
-  selector: 'app-create-state',
-  templateUrl: './create-state.component.html',
-  styleUrls: ['./create-state.component.css']
+  selector: 'app-create-card',
+  templateUrl: './create-card.component.html',
+  styleUrls: ['./create-card.component.css']
 })
-export class CreateStateComponent implements OnInit {
+export class CreateCardComponent implements OnInit {
 
+  alert:boolean=false;
   error: '';
   materials: Material[];
   states: State[];
@@ -21,7 +22,7 @@ export class CreateStateComponent implements OnInit {
  
 
   cardForm: FormGroup;
-  constructor(private fb: FormBuilder, private m: MaterialService, private card: CardService) { }
+  constructor(private fb: FormBuilder, private m: DataService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -42,7 +43,7 @@ export class CreateStateComponent implements OnInit {
     });
   }
   getMaterials(): void {
-    this.m.getAllMaterials().subscribe(
+    this.m.getMaterials().subscribe(
       (res: Material[]) => {
         this.materials = res;
       },
@@ -51,7 +52,7 @@ export class CreateStateComponent implements OnInit {
   }
 
   getOperations(): void {
-    this.card.getAllOperations().subscribe(
+    this.m.getAllOperations().subscribe(
       (res: Operation[]) => {
         this.operations = res;
       },
@@ -59,7 +60,7 @@ export class CreateStateComponent implements OnInit {
     )
   }
   getStates(): void {
-    this.card.getAllStates().subscribe(
+    this.m.getAllStates().subscribe(
       (res: State[]) => {
         this.states = res;
       },
@@ -67,7 +68,7 @@ export class CreateStateComponent implements OnInit {
     )
   }
   getProviders(): void {
-    this.card.getAllProviders().subscribe(
+    this.m.getAllProviders().subscribe(
       (res: Provider[]) => {
         this.providers = res;
       },
@@ -76,19 +77,23 @@ export class CreateStateComponent implements OnInit {
   }
 
   onSubmit() {
-    this.card.addCard(this.cardForm.value).subscribe(
+    this.m.addCard(this.cardForm.value).subscribe(
       (data) => {
-        console.log(data);
+        this.alert=true;
+        this.cardForm.reset();
       });
   }
 
+  closeAlert(){
+    this.alert=false;
+  }
   isFieldInvalid(field: string): boolean {
     const fieldName = this.cardForm.controls[field];
     return fieldName.invalid && fieldName.touched;
   }
   InvalidUntouched(field:string):boolean{
     const fieldName=this.cardForm.controls[field];
-    return fieldName.untouched && fieldName.invalid;
+    return fieldName.invalid;
   }
   CardInvalid(): boolean {
     return this.InvalidUntouched('material_id') || this.InvalidUntouched('state_id') || this.InvalidUntouched('operation_id') || this.InvalidUntouched('provider');

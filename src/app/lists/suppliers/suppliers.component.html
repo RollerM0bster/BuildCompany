@@ -1,0 +1,30 @@
+<div class="container ">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card-body">
+                    <table class="table table-bordered table-striped" style="width:100%"> 
+                        <thead>
+                            <tr>
+                                <th class="text-center">№</th>
+                                <th class="text-center">Наименование компании</th>
+                                <th class="text-center">Контактное лицо</th>
+                                <th class="text-center">Номер телефона</th>
+                                <th class="text-center">E-mail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let prov of provider">
+                                <td>{{prov.id}}</td>
+                                <td>{{prov.name}}</td>
+                                <td>{{prov.contactface}}</td>
+                                <td>{{prov.tel}}</td>
+                                <td>{{prov.mail}}</td>
+                            </tr> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,13 +16,13 @@ export class AppGuard implements CanActivate {
   canActivate(): Observable<boolean> {
 
     return this.auth.isLoggedIn().pipe(map((log: AuthData) => {
-      this.auth.data = log;
-      if (this.auth.data.status != 'success') {
+      console.log(log);
+      if (log.status != 'success') {
         this.router.navigate(['/login']);
         return false;
       }
       else {
-        if (this.auth.data.role == 'director') this.auth.isDir.next(true);
+        if (log.role == 'director') this.auth.isDir.next(true);
         else this.auth.isStore.next(true);
         this.auth.loggedIn.next(true);
         return true;

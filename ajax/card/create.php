@@ -19,9 +19,19 @@ $res=array();
 if ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     $res['id']=$line;
 }
-
 // Очистка результата
 pg_free_result($result);
+
+if($state==9 or $state==5){
+    if($state==5){
+        $query = "update stocks set quantity = quantity + ".$count." where storage=1 and material=".$mat.";";
+        $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
+    }
+    else{
+        $query = "update stocks set quantity = quantity - ".$count." where storage=1 and material=".$mat.";";
+        $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
+    }
+}
 
 // Закрытие соединения
 pg_close($dbconn);

@@ -1,0 +1,25 @@
+<div class="container flex-wrap">
+    <div class="row justify-content-center">
+        <div class="card col-3 m-2" style="width:18rem;" *ngFor="let card of cards">
+            <div class="card-body">
+                
+                <div class="d-flex flex-column justify-content-center">
+                    <h5 class="card-title text-center" >{{card.operation.name}}</h5>
+                    <p class="text-center card-subtitle mb-2 text-muted ">{{card.material.name}}</p>
+                    <p class="text-center card-subtitle mb-2 text-muted ">{{card.count}} {{card.material.unit}}</p>
+                    <p class="text-center card-subtitle mb-2 text-muted ">{{card.state.name}}</p>
+                    <div class="row">
+                        <div class="col-6 p-0">
+                            <button *ngIf="hideButton(card.state)" class="btn btn-secondary" (click)="Reject(card,card.state)">Отменить</button>
+                        </div>
+                        <div class="col-6">
+                            <button *ngIf="hideButton(card.state)" class="btn btn-secondary" (click)="Finish(card,card.state)">Завершить</button>
+                        </div>
+                    </div>
+                </div>
+           
+
+            </div>
+        </div>
+    </div>
+</div>

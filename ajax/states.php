@@ -6,7 +6,7 @@ $query = 'select
        st.id as id,
        st.name as name,
        st.provider_check as is_input
-       from states as st';
+       from states as st where st.enable=true';
 $result = pg_query($query) or die('Ошибка запроса: ' . pg_last_error());
 $res=array();
 while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
