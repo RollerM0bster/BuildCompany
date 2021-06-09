@@ -13,13 +13,13 @@ import { State } from 'src/model/state';
 })
 export class CreateCardComponent implements OnInit {
 
-  alert:boolean=false;
+  alert: boolean = false;
   error: '';
   materials: Material[];
   states: State[];
   operations: Operation[];
   providers: Provider[];
- 
+
 
   cardForm: FormGroup;
   constructor(private fb: FormBuilder, private m: DataService) { }
@@ -37,7 +37,7 @@ export class CreateCardComponent implements OnInit {
       material_id: ['', Validators.required],
       state_id: ['', Validators.required],
       operation_id: ['', Validators.required],
-      count: [1, [Validators.required,Validators.max(1000),Validators.pattern("^[0-9]*$")]],
+      count: [1, [Validators.required, Validators.max(1000), Validators.pattern("^[0-9]*$")]],
       provider: ['', Validators.required]
 
     });
@@ -79,20 +79,20 @@ export class CreateCardComponent implements OnInit {
   onSubmit() {
     this.m.addCard(this.cardForm.value).subscribe(
       (data) => {
-        this.alert=true;
+        this.alert = true;
         this.cardForm.reset();
       });
   }
 
-  closeAlert(){
-    this.alert=false;
+  closeAlert() {
+    this.alert = false;
   }
   isFieldInvalid(field: string): boolean {
     const fieldName = this.cardForm.controls[field];
     return fieldName.invalid && fieldName.touched;
   }
-  InvalidUntouched(field:string):boolean{
-    const fieldName=this.cardForm.controls[field];
+  InvalidUntouched(field: string): boolean {
+    const fieldName = this.cardForm.controls[field];
     return fieldName.invalid;
   }
   CardInvalid(): boolean {

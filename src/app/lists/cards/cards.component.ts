@@ -15,50 +15,45 @@ import { State } from 'src/model/state'
 })
 export class CardsComponent implements OnInit {
   cards: Card[];
-  state_id:string;
-  state:State;
+  state_id: string;
+  state: State;
   error: '';
-  constructor(private ds: DataService, private fb: FormBuilder, private router:Router) { }
+  constructor(private ds: DataService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.getAllCards();
- 
+
   }
 
 
   public getAllCards(): void {
     this.ds.getAllCards().subscribe((res: Card[]) => {
       this.cards = res;
-      console.log(this.cards);
-
     },
       (error) => { this.error = error; })
   }
 
-  Reject(card:Card,state:State){
-    
+  Reject(card: Card, state: State) {
 
-    
-    if(state.id==1){
-      this.state_id='6';
-      this.ds.updateCard(card.id,this.state_id);
-      window.location.reload();
-    }else{
-      this.state_id='10';
-      this.ds.updateCard(card.id,this.state_id);
-      window.location.reload();
+
+
+    if (state.id == 1) {
+      this.state_id = '6';
+      this.ds.updateCard(card.id, this.state_id).subscribe(() => { window.location.reload(); });
+    } else {
+      this.state_id = '10';
+      this.ds.updateCard(card.id, this.state_id).subscribe(() => { window.location.reload(); });
     }
   }
-  Finish(card:Card,state:State){
-    if(state.id==1){
-      this.state_id='5';
-            console.log(card.id,this.state_id);
-      this.ds.updateCard(card.id,this.state_id);
-      window.location.reload();
-    }else{
-      this.state_id='9';
-      this.ds.updateCard(card.id,this.state_id);
-      window.location.reload();
+  Finish(card: Card, state: State) {
+    if (state.id == 1) {
+      this.state_id = '5';
+      this.ds.updateCard(card.id, this.state_id).subscribe(() => {
+        window.location.reload();
+      });
+    } else {
+      this.state_id = '9';
+      this.ds.updateCard(card.id, this.state_id).subscribe(() => { window.location.reload(); });
     }
   }
   public hideButton(state: State) {

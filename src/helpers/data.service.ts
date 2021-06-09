@@ -41,7 +41,6 @@ export class DataService {
     return this.http.post<State[]>(`${this.baseUrl}/card/avail_states.php`,card);
   }
   public updateCard(id:number,state) {
-    console.log({card_id:id,state_id:state});
     return this.http.post<any>(`${this.baseUrl}/card/update_state.php`, {card_id:id,state_id:state});
   }
   public getMaterials(): Observable<Material[]> {

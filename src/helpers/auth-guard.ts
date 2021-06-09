@@ -14,7 +14,6 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.auth.isLoggedIn().pipe(
       map((log: AuthData) => {
-        console.log(log);
         if (log.status == 'success') {
           if (log.role == 'director') {
             this.auth.isDir.next(true);

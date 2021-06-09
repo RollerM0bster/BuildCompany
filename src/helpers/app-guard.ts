@@ -16,7 +16,6 @@ export class AppGuard implements CanActivate {
   canActivate(): Observable<boolean> {
 
     return this.auth.isLoggedIn().pipe(map((log: AuthData) => {
-      console.log(log);
       if (log.status != 'success') {
         this.router.navigate(['/login']);
         return false;
